@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            border: 1px solid black;
+            display: flex;
+        }
+        #sidebar{
+         flex: 2;
+         border: 1px solid black;
+        
+        }
+        #main{
+            flex:8;
+            border: 1px solid black;
+           
+         
+        }
+        #main>div{
+            display: flex;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+        #main>div>p{
+          height: 100%;
+          width: 25%;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+        #main>div>img{
+          height: 100%;
+          width: 35%;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="sidebar">
+     <div></div>
+     <div></div>
+     <div></div>
+
+        </div>
+  
+    <div id="main">
+     
+
+
+    </div>
+</div>
+</body>
+</html>
+<script type="module">
+    import sidebar from "./components/sidebar.js"
+
+    import  {makeAPICall,appendPic} from "./secipts/main.js"
+   
+    let sidebar_div=document.getElementById("sidebar")
+    sidebar_div.innerHTML=sidebar()
+    
+let res= await makeAPICall( "https://shrouded-earth-23381.herokuapp.com/api/headlines/india");
+console.log(res)
+let parent=document.getElementById("main")
+appendPic(res,parent)
+let input=document.getElementById("search_bar")
+input.addEventListener("keypress",(e)=>{
+ if(e.key=="Enter"){
+     let input_value=document.getElementById("search_bar").value
+     localStorage.setItem("article","input_value");
+     window.location.href="search.html"
+ }
+})
+</script>

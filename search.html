@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      #main{
+          height: 600%;
+          width: 100%;
+          border: 1px solid  black;
+          display: grid;
+          grid-template-columns: repeat(3,30%);
+          grid-gap: 3%;
+      }
+    </style>
+</head>
+<body>
+    <div id="main">
+
+
+    </div>
+</body>
+</html>
+<script type="module">
+import  {makeAPICall,appendPic} from "./secipts/main.js"
+let article=localStorage.getItem("article")
+let res=await makeAPICall(`https://shrouded-earth-23381.herokuapp.com/api/search/?q=${article}`)
+console.log(res)
+ let parent=document.getElementById("main");
+  appendPic(res.Array,parent)
+</script>
