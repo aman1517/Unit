@@ -8,8 +8,21 @@
 </head>
 <body>
     <h2>Hello</h2>
+    <div id="main"></div>
 </body>
 </html>
 <script>
-    
-</script>
+var x= localStorage.getItem("clicked_image");
+let main=document.getElementById("main")
+console.log(x)
+function append(x){
+   let div=document.createElement("div");
+   let main=document.getElementById("main")
+  let image=document.createElement("img")
+  image.src=x.urlToImage;
+  div.append(image);
+  main.append(div)
+  
+}
+
+</script>        
